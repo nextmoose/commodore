@@ -22,7 +22,7 @@ services:
     networks:
       main:
     command:
-      - --docker-host
+      - --host
       - tcp://0.0.0.0:2376
   hacker:
     image: rebelplutonium/hacker:${HACKER_VERSION}
