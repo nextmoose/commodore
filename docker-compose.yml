@@ -2,9 +2,10 @@ version: "3.4"
 networks:
 services:   
   browser:
-    image: rebelplutonium/browser:0.0.0
+    image: rebelplutonium/browser:${BROWSER_VERSION}
     volumes:
       - /tmp/.X11-unix/X0:/tmp/.X11-unix/X0:ro
     environment:
       - DISPLAY
-  hacker:
+    labels:
+      expiry: ${EXPIRY}

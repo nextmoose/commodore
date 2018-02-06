@@ -7,5 +7,6 @@ USER user
 WORKDIR /home/user
 COPY docker-compose.yml entrypoint.sh /home/user/
 VOLUME /home
+ENV BROWSER_VERSION=0.0.0
 ENTRYPOINT ["sh", "/home/user/entrypoint.sh"]
 CMD []

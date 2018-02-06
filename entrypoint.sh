@@ -10,8 +10,9 @@ do
     esac
 done &&
     cleanup(){
-        sudo docker-compose stop &&
-            sudo docker-compose rm -fv
+        sudo --preserve-env docker-compose stop &&
+            sudo --preserve-env docker-compose rm -fv
     } &&
-    sudo docker-compose up -d &&
+    trap cleanup EXIT &&
+    sudo --preserve-env docker-compose up -d &&
     sh
