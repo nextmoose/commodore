@@ -1,0 +1,10 @@
+version: "3.4"
+networks:
+services:   
+  browser:
+    image: rebelplutonium/browser:0.0.0
+    volumes:
+      - /tmp/.X11-unix/X0:/tmp/.X11-unix/X0:ro
+    environment:
+      - DISPLAY
+  hacker:
