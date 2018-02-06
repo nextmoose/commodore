@@ -1,8 +1,12 @@
 FROM docker/compose:1.18.0
 RUN \
-    adduser -D user && \
+    apk update && \
+        apk upgrade && \
+        apk add --no-cache sudo && \
+        adduser -D user && \
         echo "user ALL=(ALL) NOPASSWD: /usr/local/bin/docker-compose" > /etc/sudoers.d/user && \
-        chmod 0444 /etc/sudoers.d/user
+        chmod 0444 /etc/sudoers.d/user && \
+        rm -rf /var/cache/apk/*
 USER user
 WORKDIR /home/user
 COPY docker-compose.yml entrypoint.sh /home/user/
