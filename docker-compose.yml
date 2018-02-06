@@ -12,10 +12,11 @@ services:
       expiry: ${EXPIRY}
     networks:
       main:
+    shm_size: 256m
   hacker:
-    image rebelplutonium/hacker:${HACKER_VERSION}
+    image: rebelplutonium/hacker:${HACKER_VERSION}
     privileged: true
-    environment
+    environment:
       - PROJECT_NAME
       - DISPLAY
       - USER_NAME
