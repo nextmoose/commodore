@@ -1,5 +1,4 @@
 version: "3.4"
-networks:
 services:   
   browser:
     image: rebelplutonium/browser:${BROWSER_VERSION}
