@@ -22,5 +22,6 @@ done &&
             sudo --preserve-env docker-compose rm -fv
     } &&
     trap cleanup EXIT &&
+    env &&
     sudo --preserve-env docker-compose up -d &&
     sh
