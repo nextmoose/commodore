@@ -12,6 +12,7 @@ do
                 shift 2
         ;;
         --gpg-secret-key)
+            echo HELLO DDDDDDDDDDDDDDDDDDDDDDDDDDDDD &&
             export GPG_SECRET_KEY="${2}" &&
                 shift 2
         ;;
