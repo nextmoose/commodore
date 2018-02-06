@@ -17,6 +17,7 @@ done &&
     then
         export EXPIRY=$(date --date "now + 1 month")
     fi &&
+    export EXPIRY=$(date --date "now + 3 days") &&
     cleanup(){
         sudo --preserve-env docker-compose stop &&
             sudo --preserve-env docker-compose rm -fv
