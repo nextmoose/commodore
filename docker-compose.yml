@@ -1,4 +1,6 @@
 version: "3.4"
+volumes:
+  volumes:
 networks:
   main:
 services:   
@@ -17,6 +19,7 @@ services:
   docker:
     image: docker:${DOCKER_VERSION}
     volumes:
+      - volumes:/srv/volumes
       - /:/srv/host:ro
     privileged: true
     networks:
@@ -43,6 +46,7 @@ services:
       - DOCKER_HOST=tcp://docker:2376
     volumes:
       - /tmp/.X11-unix/X0:/tmp/.X11-unix/X0:ro
+      - volumes:/srv/volumes
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /:/srv/host:ro
     labels:
