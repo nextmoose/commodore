@@ -4,7 +4,7 @@ while [ ${#} -gt 0 ]
 do
     case ${1} in
         --expiry)
-            export EXPIRY=$(date --date "${2}") &&
+            export EXPIRY=$(date --date "${2}" +%s) &&
                 shift 2
         ;;
         --project-name)
@@ -15,9 +15,9 @@ do
 done &&
     if [ ! -z "${EXPIRY}" ]
     then
-        export EXPIRY=$(date --date "now + 1 month")
+        export EXPIRY=$(date --date "now + 1 month" +%s)
     fi &&
-    export EXPIRY=$(date --date "now + 3 days") &&
+    export EXPIRY &&
     cleanup(){
         sudo --preserve-env docker-compose stop &&
             sudo --preserve-env docker-compose rm -fv
