@@ -36,3 +36,5 @@ services:
       - /:/srv/host:ro
     labels:
       expiry: ${EXPIRY}
+    network:
+      main:
