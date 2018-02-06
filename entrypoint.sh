@@ -13,7 +13,7 @@ do
         ;;
     esac
 done &&
-    if [ ! -z "${EXPIRY}" ]
+    if [ -z "${EXPIRY}" ]
     then
         export EXPIRY=$(date --date "now + 1 month" +%s)
     fi &&
