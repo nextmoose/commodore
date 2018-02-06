@@ -1,5 +1,6 @@
 #!/bin/sh
 
+echo exec HELLO ${@} &&
 sudo \
     --preserve-env \
     docker \
