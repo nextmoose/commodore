@@ -1,4 +1,6 @@
 version: "3.4"
+networks:
+  main:
 services:   
   browser:
     image: rebelplutonium/browser:${BROWSER_VERSION}
@@ -8,3 +10,26 @@ services:
       - DISPLAY
     labels:
       expiry: ${EXPIRY}
+    networks:
+      main:
+  hacker:
+    image rebelplutonium/hacker:${HACKER_VERSION}
+    privileged: true
+    environment
+      - PROJECT_NAME
+      - DISPLAY
+      - USER_NAME
+      - USER_EMAIL
+      - GPG_SECRET_KEY
+      - GPG2_SECRET_KEY
+      - GPG_OWNER_TRUST
+      - GPG2_OWNER_TRUST
+      - GPG_KEY_ID
+      - SECRETS_ORGANIZATION
+      - SECRETS_REPOSITORY
+    volumes:
+      - /tmp/.X11-unix:/X0:/tmp/.X11-unix/X0:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /:/srv/host:ro
+    labels:
+      expiry=${EXPIRY}
