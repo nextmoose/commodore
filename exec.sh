@@ -19,4 +19,5 @@ sudo \
         --env DISPLAY \
         --mount type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock,readonly=true \
         --label expiry=$(($(date +%s)+60*60*24*7)) \
-        rebelplutonium/commodore:0.0.0
+        rebelplutonium/commodore:0.0.0 \
+            "${@}"
