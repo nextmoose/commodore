@@ -1,6 +1,5 @@
 #!/bin/sh
 
-echo HELLO "${@}" &&
 while [ ${#} -gt 0 ]
 do
     case ${1} in
@@ -13,7 +12,6 @@ do
                 shift 2
         ;;
         --gpg-secret-key)
-            echo HELLO DDDDDDDDDDDDDDDDDDDDDDDDDDDDD &&
             export GPG_SECRET_KEY="${2}" &&
                 shift 2
         ;;

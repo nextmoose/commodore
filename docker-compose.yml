@@ -13,10 +13,12 @@ services:
     networks:
       main:
     shm_size: 256m
+    command: http://hacker:13912
   hacker:
     image: rebelplutonium/hacker:${HACKER_VERSION}
     privileged: true
     environment:
+      - CLOUD9_PORT=13912
       - PROJECT_NAME
       - DISPLAY
       - USER_NAME
