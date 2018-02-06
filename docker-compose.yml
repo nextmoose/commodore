@@ -14,6 +14,16 @@ services:
       main:
     shm_size: 256m
     command: http://hacker:13912
+  docker:
+    image: docker/${DOCKER_VERSION}
+    volumes:
+      - /:/srv/host:ro
+    privileged: true
+    networks:
+      main:
+    command:
+      - --docker-host
+      - tcp://0.0.0.0:2376
   hacker:
     image: rebelplutonium/hacker:${HACKER_VERSION}
     privileged: true
@@ -30,6 +40,7 @@ services:
       - GPG_KEY_ID
       - SECRETS_ORGANIZATION
       - SECRETS_REPOSITORY
+      - DOCKER_HOST=tcp://docker:2376
     volumes:
       - /tmp/.X11-unix/X0:/tmp/.X11-unix/X0:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
