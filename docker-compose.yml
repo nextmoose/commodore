@@ -15,7 +15,7 @@ services:
     shm_size: 256m
     command: http://hacker:13912
   docker:
-    image: docker/${DOCKER_VERSION}
+    image: docker:${DOCKER_VERSION}
     volumes:
       - /:/srv/host:ro
     privileged: true
