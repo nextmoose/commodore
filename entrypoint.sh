@@ -43,6 +43,10 @@ do
             export BROWSER_VERSION="${2}" &&
                 shift 2
         ;;
+        --docker-version)
+            export DOCKER_VERSION="${2}" &&
+                shift 2
+        ;;
         --hacker-version)
             export HACKER_VERSION="${2}" &&
                 shift 2
@@ -102,6 +106,10 @@ done &&
     then
         export BROWSER_VERSION=0.0.0
     fi &&
+    if [ -z "${DOCKER_VERSION}" ]
+    then
+        export DOCKER_VERSION=18.01.0-dind
+    fi &&
     if [ -z "${HACKER_VERSION}" ]
     then
         export HACKER_VERSION=0.2.0
@@ -116,6 +124,7 @@ done &&
     export SECRET_ORGANIZATION="${SECRET_ORGANIZATION}" &&
     export SECRET_REPOSITORY="${SECRET_REPOSITORY}" &&
     export BROWSER_VERSION="${BROWSER_VERSION}" &&
+    export DOCKER_VERSION="${DOCKER_VERSION}" &&
     export HACKER_VERSION="${HACKER_VERSION}" &&
     cleanup(){
         sudo --preserve-env docker-compose stop &&
