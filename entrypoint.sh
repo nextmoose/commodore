@@ -115,6 +115,8 @@ done &&
     export GPG_OWNER_TRUST="${GPG_OWNER_TRUST}" &&
     export GPG2_OWNER_TRUST="${GPG2_OWNER_TRUST}" &&
     export GPG_KEY_ID="${GPG_KEY_ID}" &&
+    export SECRET_ORGANIZATION="${SECRET_ORGANIZATION}" &&
+    export SECRET_REPOSITORY="${SECRET_REPOSITORY}" &&
     export BROWSER_VERSION="${BROWSER_VERSION}" &&
     export HACKER_VERSION="${HACKER_VERSION}" &&
     cleanup(){
