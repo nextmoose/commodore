@@ -127,10 +127,12 @@ done &&
     export DOCKER_VERSION="${DOCKER_VERSION}" &&
     export HACKER_VERSION="${HACKER_VERSION}" &&
     cleanup(){
+	sh &&
         sudo --preserve-env docker-compose stop &&
             sudo --preserve-env docker-compose rm -fv
     } &&
     trap cleanup EXIT &&
     env &&
+    sh &&
     sudo --preserve-env docker-compose up -d &&
     sh

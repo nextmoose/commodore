@@ -1,24 +1,25 @@
 #!/bin/sh
 
-echo exec HELLO ${@} &&
-sudo \
-    --preserve-env \
-    docker \
-    run \
-    --interactive \
-    --tty \
-    --rm \
-    --env DISPLAY \
-    --volume /var/run/docker.sock:/var/run/docker.sock:ro \
-    --label expiry=$(($(date +%s)+60*60*24*7)) \
-    docker:18.01.0-ce \
-        container \
-        run \
+IDS=$(mktemp -d) &&
+cleanup(){
+	docker rm -fv $(cat ${IDS}/docker) $(cat ${IDS}/commodore) &&
+	docker network rm $(cat ${IDS}/network)
+} &&
+trap cleanup exit &&
+sudo --preserve-env docker create --cidfile ${IDS}/docker --privileged docker:18.01.0-ce-dind --host tcp://0.0.0.0:2376 &&
+sudo --preserve-env \
+	docker \
+        create \
+	--cidfile ${IDS}/commodore \
         --interactive \
         --tty \
-        --rm \
         --env DISPLAY \
-        --mount type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock,readonly=true \
+	--env DOCKER_HOST=tcp://docker:2376 \
         --label expiry=$(($(date +%s)+60*60*24*7)) \
         rebelplutonium/commodore:0.0.0 \
-            "${@}"
+            "${@}" &&
+sudo --preserve-env docker network create $(uuidgen) > ${IDS}/network &&
+sudo --preserve-env docker network connect --alias docker $(cat ${IDS}/network) $(cat ${IDS}/docker) &&
+sudo --preserve-env docker network connect $(cat ${IDS}/network) $(cat ${IDS}/commodore) &&
+sudo --preserve-env docker start $(cat ${IDS}/docker) &&
+sudo --preserve-env docker start --interactive $(cat ${IDS}/commodore)
