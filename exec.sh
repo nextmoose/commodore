@@ -12,6 +12,9 @@ IDS=$(mktemp -d) &&
 		docker \
 		create \
 		--cidfile ${IDS}/docker \
+		--volume /:/srv/host:ro \
+		--volume /var/run/docker.sock:/var/run/docker.sock:ro \
+		--volume /tmp/.X11-unix:/tmp/.X11-unix:ro
 		--privileged \
 		docker:18.01.0-ce-dind \
 			--host tcp://0.0.0.0:2376 &&
