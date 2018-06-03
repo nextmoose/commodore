@@ -23,7 +23,7 @@ docker \
         --privileged \
         --mount type=volume,source=$(docker volume ls --quiet --filter label=moniker=${BROWSER_DATA_VOLUME}),destination=/data \
         --mount type=bind,source=/tmp/.X11-unix,destination=/tmp/.X11-unix,readonly=true \
-        --mount type=bind,source=/srv/pulse,destination=/run/user/${TARGET_UID}/pulse \
+        --mount type=bind,source=/run/user/${TARGET_UID}/pulse,destination=/run/user/${TARGET_UID}/pulse \
         --mount type=bind,source=/etc/machine-id,destination=/etc/machine-id \
         --mount type=bind,source=/var/run/dbus/system_bus_socket,destination=/var/run/dbus/system_bus_socket \
         --mount type=bind,source=/var/lib/dbus,destination=/var/lib/dbus \
