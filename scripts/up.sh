@@ -7,9 +7,15 @@ BROWSER_VOLUME=$(docker \
     --label "snapshot.expiry=now" \
     --label "snapshot.interval=1s" \
     --label "snapshot.dependency=browser" \
-    --label "archive.00.expiry=now" \
-    --label "archive.00."
-    --label "archive") &&
+    --label "archive.00.expiry=now + 1 week" \
+    --label "archive.00.interval=monthly" \
+    --label "archive.01.expiry=now" \
+    --label "archive.01.interval=weekly" \
+    --label "archive.02.expiry=now" \
+    --label "archive.02.interval=daily" \
+    --label "archive.03.expiry=now" \
+    --label "archive.03.interval=hourly" \
+    ) &&
     docker \
         container \
         create \
