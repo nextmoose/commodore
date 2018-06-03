@@ -1,8 +1,5 @@
 ARG BASE_IMAGE=docker:18.05.0-ce
 FROM ${BASE_IMAGE}
-COPY scripts /opt/
-ENV BROWSER_DATA_VOLUME="b6d99ac3-cf18-411b-825b-d43e27c992c3"
-ENV BROWSER_CONTAINER="3f7ac67f-51d0-4883-9052-00a650764099"
-ENV MAIN_NETWORK="3e17a9bf-3acc-421c-85c3-ed937a885535"
+VOLUME ["/srv/browser/data"]
 ENTRYPOINT ["sh", "/opt/scripts/entrypoint.sh"]
 CMD ["up"]
